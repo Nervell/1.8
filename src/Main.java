@@ -1,29 +1,37 @@
 import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
-        System.out.println(isLeapYear(2001));
-        System.out.println(isItLiteVersion(2000, "Android"));
-        System.out.println(deliveryDays(19));
+        isLeapYear(2000);
+        isItLiteVersion(2023, 1);
+        System.out.println("Потребуется дней: " + deliveryDays(19));
     }
 
-    public static String isLeapYear(int year) {
+    public static void isLeapYear(int year) {
         if (((year % 100 != 0) && (year % 4 == 0)) || (year % 400 == 0)) {
-            return year + " год является високосным";
+            System.out.println(year + " год является високосным");
         } else {
-            return year + " год не является високосным";
+            System.out.println(year + " год не является високосным");
         }
     }
 
-    public static String isItLiteVersion(int year, String oc) {
+    public static void isItLiteVersion(int year, int oc) {
         int currentYear = LocalDate.now().getYear();
         if (currentYear > year) {
-            return "Вам нужно установить lite версию для " + oc;
+            if (oc == 0) {
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+            } else if (oc == 1) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+            }
         } else {
-            return "Вам нужно установить обычную версию для " + oc;
+            if (oc == 0) {
+                System.out.println("Установите обычную версию приложения для iOS по ссылке");
+            } else if (oc == 1) {
+                System.out.println("Установите обычную версию приложения для Android по ссылке");
+            }
         }
     }
 
-    public static String deliveryDays (int distance) {
+    public static int deliveryDays (int distance) {
         int counter = 0;
         if (distance < 20) {
             counter++;
@@ -33,6 +41,6 @@ public class Main {
                 counter++;
             }
         }
-        return "Потребуется дней: " + counter;
+        return counter;
     }
 }
